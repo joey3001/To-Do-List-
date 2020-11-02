@@ -39,7 +39,18 @@ function displayTaskDetails(listOfTasksToDisplay) {
   taskList.html(htmlForLocationInfo);
 }
 
+function finishTask(taskId) {
+  $("#" + taskId).text("done");
+}
+
+function attachTaskListeners() {
+  $("ul#tasks").on("click", "li", function() {
+    finishTask(this.id);
+  });
+};
+
 $(document).ready(function() {
+  attachTaskListeners();
   $("#taskForm").submit(function(event) {
     event.preventDefault();
     let taskName = $("input#taskName").val();
