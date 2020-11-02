@@ -1,62 +1,51 @@
-function listOfPlaces() {
-  this.places = [];
+function listOfTasks() {
+  this.tasks = [];
   this.currentId = 0;
 }
 
-listOfPlaces.prototype.addLocation = function(place) {
-  place.id = this.assignId();
-  this.places.push(place);
+listOfTasks.prototype.addTask = function(task) {
+  task.id = this.assignId();
+  this.tasks.push(task);
 }
 
-listOfPlaces.prototype.assignId = function() {
+listOfTasks.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
 }
 
-listOfPlaces.prototype.findPlace = function(id) {
+listOfTasks.prototype.findTask = function(id) {
   for (let i = 0; i < this.places.length; i++) {
-    if (this.places[i]) {
-      if (this.places[i].id == id) {
-        return this.places[i];
+    if (this.tasks[i]) {
+      if (this.tasks[i].id == id) {
+        return this.tasks[i];
       }
     }
   }
 }
 
-function Place (location, landmarks, time) {
-  this.location = location;
-  this.landmarks = landmarks;
+function Task (whatItIs, time) {
+  this.whatItIs = whatItIs;
   this.time = time;
 }
 
-let list = new listOfPlaces();
+let list = new listOfTasks();
 
-function displayLocationDetails(listOfPlacesToDisplay) {
-  let locationList = $("ul#locations");
+function displayTaskDetails(listOfTasksToDisplay) {
+  let taskList = $("ul#tasks");
   let htmlForLocationInfo = "";
-  listOfPlacesToDisplay.places.forEach(function(place) {
-    htmlForLocationInfo += "<li id=" + place.id + ">" + place.location + ", " + place.landmarks + "</li>";
+  listOfTasksToDisplay.tasks.forEach(function(task) {
+    htmlForLocationInfo += "<li id=" + task.id + ">" + task.whatItIs + ", at: " + task.time + "</li>";
   });
-  locationList.html(htmlForLocationInfo);
+  taskList.html(htmlForLocationInfo);
 }
 
 $(document).ready(function() {
-  $("#place1").submit(function(event) {
+  $("#taskForm").submit(function(event) {
     event.preventDefault();
-    let location1 = new Place ("Palermo", "the city", "yesterday");
-    list.addLocation(location1);
-    displayLocationDetails(list);
-  });
-  $("#place2").submit(function(event) {
-    event.preventDefault();
-    let location2 = new Place ("Mirror Lake", "the mountain", "the day before yesterday");
-    list.addLocation(location2);
-    displayLocationDetails(list);
-  });
-  $("#place3").submit(function(event) {
-    event.preventDefault();
-    let location3 = new Place ("Craters of the Moon", "the craters", "today");
-    list.addLocation(location3);
-    displayLocationDetails(list);
+    let taskName = $("input#taskName").val();
+    let taskTime = $("input#taskTime").val();
+    let task1 = new Task (taskName,taskTime);
+    list.addTask(task1);
+    displayTaskDetails(list);
   });
 });

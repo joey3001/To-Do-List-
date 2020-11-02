@@ -9,17 +9,18 @@
 </head>
 <body>
   <div class="container">
-    <form id="place1">
-      <input type="image" name="type" value="1" src="img/Palermo.jpg" alt="Submit Form" />
+    <form id="taskForm">
+      <div class="form-group">
+        <label for="taskName">What to do:</label>
+        <input type="text" id="taskName">
+      </div>
+      <div class="form-group">
+        <label for="taskTime">When do you need to do it?</label>
+        <input type="time" id="taskTime">
+      </div>
+      <input type="submit" id="submitButton" value="Submit">
     </form>
-    <form id="place2">
-      <input type="image" name="type" value="1" src="img/Lost_lake.jpg" alt="Submit Form"/>
-    </form>
-    <form id="place3">
-      <input type="image" name="type" value="1" src="img/Craters_of_the_Moon.jpg" alt="Submit Form"/>
-    </form>
-    <ul id="locations">
-      
+    <ul id="tasks">
     </ul>
   </div>
 </body>
