@@ -40,7 +40,8 @@ function displayTaskDetails(listOfTasksToDisplay) {
 }
 
 function finishTask(taskId) {
-  $("#" + taskId).text("done");
+  $("#" + taskId).append(", Is done");
+  $("#" + taskId).addClass("taskIsDone");
 }
 
 function attachTaskListeners() {
@@ -58,5 +59,9 @@ $(document).ready(function() {
     let task1 = new Task (taskName,taskTime);
     list.addTask(task1);
     displayTaskDetails(list);
+  });
+  $("#deleteButton").click(function(event) {
+    $(".taskIsDone").remove();
+    event.preventDefault();
   });
 });
